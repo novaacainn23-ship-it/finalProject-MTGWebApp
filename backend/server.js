@@ -15,8 +15,6 @@ const analyticsRoutes = require('./routes/analytics');
 const app = express();
 
 // Middleware
-import cors from 'cors';
-
 const allowedOrigins = [
   "https://final-project-mtg-web-app.vercel.app",
   "http://localhost:5173", // or 3000 — whatever you use locally
