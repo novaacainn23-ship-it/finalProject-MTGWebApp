@@ -21,24 +21,31 @@ const allowedOrigins = [
   "http://localhost:3000",
 ];
 
-// NOTE: allow requests with no origin (Render health checks, curl, Postman)
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) {
-      // allow requests with no origin (mobile apps, curl, server → server)
+    // allow requests with no origin (Render health checks)
+    if (!origin) return callback(null, true);
+
+    // allow Vercel preview deployments
+    if (origin.includes("vercel.app")) {
       return callback(null, true);
     }
 
-    if (allowedOrigins.includes(origin)) {
+    // allow localhost for dev
+    if (origin.includes("localhost")) {
       return callback(null, true);
     }
 
-    console.log("❌ BLOCKED BY CORS — origin:", origin);
+    console.log("❌ BLOCKED ORIGIN:", origin);
     return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // allow preflight
