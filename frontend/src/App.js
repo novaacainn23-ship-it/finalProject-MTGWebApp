@@ -5,7 +5,7 @@ import AnalyticsDashboard from './components/AnalyticsDashboard';
 
 const API_URL =
   process.env.REACT_APP_API_URL || "http://localhost:5001/api";
-REACT_APP_API_URL = https://finalproject-mtgwebapp.onrender.com/
+REACT_APP_API_URL = https://finalproject-mtgwebapp.onrender.com
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
