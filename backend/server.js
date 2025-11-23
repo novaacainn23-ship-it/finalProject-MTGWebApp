@@ -35,6 +35,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.options('*', cors());
 
 // Routes
 app.use('/api/auth', authRoutes);
