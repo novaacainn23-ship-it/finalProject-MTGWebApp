@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e2f;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #5a189a;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        button {
+            background: #7b2cbf;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #9d4edd;
+        }
+
+        .section {
+            margin: 20px;
+            padding: 20px;
+            background: #2a2a40;
+            border-radius: 12px;
+        }
+
+        .user-card {
+            padding: 15px;
+            background: #3a3a55;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .user-card h3 {
+            margin: 5px 0;
+        }
+
+        .user-card button {
+            margin-right: 10px;
+            background: #ff6b6b;
+        }
+
+        .user-card button.promote {
+            background: #4cc9f0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>Admin Dashboard</header>
+
+<div class="section">
+    <h2>All Users</h2>
+    <div id="userList">Loading...</div>
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
