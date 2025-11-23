@@ -15,12 +15,23 @@ const analyticsRoutes = require('./routes/analytics');
 const app = express();
 
 // Middleware
+import cors from 'cors';
+
+const allowedOrigins = [
+  "https://final-project-mtg-web-app.vercel.app",
+  "http://localhost:5173", // or 3000 — whatever you use locally
+];
+
 app.use(cors({
-  origin: [
-    "https://final-project-mtg-web-4rzht28j7-novaacainn23-ship-its-projects.vercel.app",
-    "http://localhost:3000"
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curls)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error("Not allowed by CORS"), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
 }));
 
 app.use(express.json());
