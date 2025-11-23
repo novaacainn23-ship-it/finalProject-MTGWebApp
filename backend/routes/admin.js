@@ -12,7 +12,7 @@ router.get("/users", adminOnly, async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-});git 
+});
 
 // Delete a user
 router.delete("/user/:id", adminOnly, async (req, res) => {
