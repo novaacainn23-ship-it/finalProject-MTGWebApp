@@ -3,7 +3,8 @@ import axios from 'axios';
 import AdminPanel from './components/AdminPanel';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:5001/api";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
