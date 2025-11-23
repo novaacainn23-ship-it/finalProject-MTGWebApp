@@ -17,12 +17,12 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: [
-    "https://final-project-mtg-web-app.vercel.app",  
+    "https://final-project-mtg-web-4rzht28j7-novaacainn23-ship-its-projects.vercel.app",
     "http://localhost:3000"
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 app.use(express.json());
 
 // Routes
