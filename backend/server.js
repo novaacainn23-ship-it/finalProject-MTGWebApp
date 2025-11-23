@@ -20,17 +20,35 @@ const allowedOrigins = [
   "http://localhost:5173", // or 3000 — whatever you use locally
 ];
 
-app.use(cors({
+import cors from "cors";
+
+const allowedOrigins = [
+  "https://final-project-mtg-web-app.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
+// NOTE: allow requests with no origin (Render health checks, curl, Postman)
+const corsOptions = {
   origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps, curls)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error("Not allowed by CORS"), false);
+    if (!origin) {
+      // allow requests with no origin (mobile apps, curl, server → server)
+      return callback(null, true);
     }
-    return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("❌ BLOCKED BY CORS — origin:", origin);
+    return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
-}));
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // allow preflight
 
 app.use(express.json());
 app.options('*', cors());
